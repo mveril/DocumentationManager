@@ -20,15 +20,15 @@ public class DocApi {
     
   
     @GET()
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Documentation> list(){
         return documentationDAO.findAll();
     }
     
     @GET()
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getById(){
-        Optional<Documentation> doc = documentationDAO.findById(0);
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getById(@PathParam("id") int id){
+        Optional<Documentation> doc = documentationDAO.findById(id);
         if(doc.isPresent()){
             return Response.ok(doc.get()).build();
         }  else{
@@ -47,7 +47,7 @@ public class DocApi {
     }
     
     @POST()
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON})
     public long post(Documentation documentation){
         documentationDAO.create(documentation);
         return documentation.getId();
@@ -55,9 +55,10 @@ public class DocApi {
     
     @Path("/{id}")
     @PUT()
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON})
     public Response put(@PathParam("id") int id, Documentation documentation){
         if(id == documentation.getId()){
+            documentationDAO.update(documentation);
             return Response.ok().build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();

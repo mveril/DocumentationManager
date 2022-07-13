@@ -1,4 +1,4 @@
-package org.mveril.documentationmanager.dao;
+package com.mveril.documentationmanager.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
