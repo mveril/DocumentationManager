@@ -24,7 +24,7 @@ public abstract class DAO<T> {
         tx.commit();
     }
 
-    public Optional<T> findById(int id) {
+    public Optional<T> findById(long id) {
         T item = entityManager.find(type, id);
         return Optional.of(item);
     }
