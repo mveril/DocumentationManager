@@ -26,7 +26,7 @@ public abstract class DAO<T> {
 
     public Optional<T> findById(long id) {
         T item = entityManager.find(type, id);
-        return Optional.of(item);
+        return Optional.ofNullable(item);
     }
 
     public List<T> findAll() {
