@@ -25,6 +25,7 @@ public class DocApi {
         return documentationDAO.findAll();
     }
     
+    @Path("/{id}")
     @GET()
     @Produces({MediaType.APPLICATION_JSON})
     public Response getById(@PathParam("id") int id){
